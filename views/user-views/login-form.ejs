@@ -1,0 +1,20 @@
+<h2>Log In</h2>
+
+<form id="form" method="post" action="/process-login">
+
+  <% if(securityFeedback.length > 0) { %>
+      <p class="success-message"> <%=securityFeedback %> </p>
+  <% } %>
+
+  <% if(flashError.length > 0) { %>
+    <p class="error-message"> <%= flashError %> </p>
+  <% } %>
+
+  <label for="email-input"> Email </label>
+  <input id="email-input" type="email" name="loginEmail">
+  <br>
+
+  <label for="password-input"> Password </label>
+  <input id="password-input" type="password" name="loginPassword">
+  <button> Log In </button>
+</form>
