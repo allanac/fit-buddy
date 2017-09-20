@@ -126,16 +126,17 @@ router.post('/profile/:userId', (req,res,next) => {
         return;
           }
 
-          userFromDb.name = req.body.firstName;
+          userFromDb.name = req.body.name;
           userFromDb.gender = req.body.gender;
-          userFromDb.location = req.body.userLocation;
-          userFromDb.gym_membership = req.body.userGym;
-          userFromDb.pref_workout_loc = req.body.workoutLocations;
-          userFromDb.pref_workout_buddy = req.body.userBuddyPref;
-          userFromDb.fitness_level = req.body.userFitLevel;
-          userFromDb.fitness_goals = req.body.userFitGoals;
-          userFromDb.availability_days = req.body.availableDays;
-          userFromDb.availability_time = req.body.availableTimes;
+          userFromDb.userLocation = req.body.userLocation;
+          userFromDb.userGym = req.body.userGym;
+          userFromDb.workoutLocations = req.body.workoutLocations;
+          userFromDb.workoutTypes = req.body.workoutTypes;
+          userFromDb.userBuddyPref = req.body.userBuddyPref;
+          userFromDb.userFitLevel = req.body.userFitLevel;
+          userFromDb.userFitGoals = req.body.userFitGoals;
+          userFromDb.availableDays = req.body.availableDays;
+          userFromDb.availableTimes= req.body.availableTimes;
 
 
        userFromDb.save ((err) => {

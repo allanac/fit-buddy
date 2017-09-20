@@ -36,7 +36,26 @@ section {
    font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
 
-   #form {
+#main-container {
+  margin:30px;
+}
+
+#profile-image{
+  height: 100px;
+  width:100px;
+}
+
+#searchpic {
+  height: 100px;
+  width:100px;
+}
+
+#home-page{
+  border: 1px dashed gray;
+  justify-content: center;
+}
+
+#form {
      margin: 30px auto;
      width: 380px;
    }
@@ -95,10 +114,7 @@ section {
    #messages li { padding: 5px 10px; }
    #messages li:nth-child(odd) { background: #eee; }
 
-#searchpic {
-  height: 100px;
-  width:100px;
-}
+
 
 
 

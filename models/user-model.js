@@ -10,18 +10,19 @@ const userSchema = new Schema (
     googleID: {type:String},
 
     gender: {type:String, enum:['male', 'female']},
-    location:{type: String},
+    userLocation:{type: String},
 
-    gym_membership:{type: Array},
-    pref_workout_loc:{type:Array},
-    pref_workout_buddy:{type:String, enum:['male', 'female']},
+    userGym:{type: Array},
+    workoutLocations:{type:Array},
+    workoutTypes:{type: Array},
+    userBuddyPref:{type:String, enum:['male', 'female']},
 
-    fitness_level:{type: String},
-    fitness_goals:{type: String},
-    body_type:{type:String},
+    userFitLevel:{type: String},
+    userFitGoals:{type: String},
+    bodyType:{type:String},
 
-    availability_days: {type:Array},
-    availability_time: {type:Array}
+    availableDays: {type:Array},
+    availableTimes: {type:Array}
 
   },
     {timestamps:true}

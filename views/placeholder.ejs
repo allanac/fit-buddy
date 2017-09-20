@@ -2,6 +2,32 @@
   <p class="error-message"> <%= securityFeedback %> </p>
 <% } %>
 
-<h2> This is a render for a logged in User </h2>
+<div class="container" id="home-page">
+  <div class="row">
 
-What should go on this page?
+    <div class="col-md-8">
+
+    <h4>Welcome <%=currentUser.name %> !</h4>
+    <p>My Profile</p>
+    <p>Workout Days: <%=currentUser.availableDays%> </p>
+    <p>I am Located in:</h6> <%=currentUser.userLocation %> </p>
+    <p>My Gym Memberships: <%=currentUser.userGym %> </p>
+    <p> I like working out here: <%=currentUser.workoutLocations %></p>
+    <p> My Fitness Goals: <%=currentUser.userFitGoals %> </p>
+    <p>My Current Fitness Level: <%= currentUser.userFitLevel %> </p>
+
+
+    </div>
+
+
+
+
+    <div class="col-md-2 col-md-offset-2">
+      <a class="btn btn-default" href="/messages" role="button">My Messages</a>
+      <br>
+      <br>
+      <a class="btn btn-default" href="/findbuddy" role="button">Find Fit Buddy</a>
+      <a class="btn btn-default" href="/addgym" role="button"> Add a Gym</a>
+    </div>
+</div>
+</div>
