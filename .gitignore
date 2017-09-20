@@ -31,3 +31,8 @@ npm-debug.log
 
 #file with secrets
 .env
+
+#chatfiles
+server.js
+SocketEvents.js
+public/server.html
