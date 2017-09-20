@@ -1,32 +1,16 @@
 <h2> MY FitBuddy Matches</h2>
 
-<ul>
-  <%  listOfUsers.forEach((oneUser) => { %>
-      <li>
-        <h3> <%= oneUser.name %> </h3>
-        <a href="/messages/<%=oneUser._id %>"> Message this user </a>
-        <p> My Current Fit Goals : <%= oneUser.fitness_goals %> </p>
-        <p> My Fitness Level: <%= oneUser.fitness_level %></p>
-        <p> I workout: <%= oneUser.availability_days %></p>
-        <p> At these times: <%= oneUser.availability_time %> </p>
-        <p> I live here: <%= oneUser.location %> </p>
-        <p> Member Since: <time> <%= oneUser.createdAt %>  </time></p>
-      </li>
-  <%  }) %>
-</ul>
-
 <br><br>
 <%  listOfUsers.forEach((oneUser) => { %>
-<div class="container-fluid well span6">
+<div class="container-fluid well span4">
 	<div class="row-fluid">
         <div class="span2" >
-		    <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle">
+		    <img id="searchpic" src="https://media.giphy.com/media/Ft62PpMu4mzpm/giphy.gif" class="img-circle">
         </div>
 
-        <div class="span8">
+        <div class="span8 text-center">
           <ul>
             <li>
-
             <h3> <%= oneUser.name %> </h3>
             <h6>My Current Fit Goals : <%= oneUser.fitness_goals %></h6>
             <h6>My Fitness Level: <%= oneUser.fitness_level %></h6>
@@ -39,15 +23,10 @@
 
 
         <div class="span2">
-            <div class="btn-group">
-                <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
-                    Action
-                    <span class="icon-cog icon-white"></span><span class="caret"></span>
+            <div class="btn-group pull-right">
+                <a id="chatbutton" class="btn dropdown-toggle btn-info" href="/messages/<%=oneUser._id %>">
+                    Chat
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a href="/messages/<%=oneUser._id %>">Message This User</a></li>
-                    <li><a href="#"><span class="icon-trash"></span> Delete</a></li>
-                </ul>
             </div>
         </div>
 </div>

@@ -1,4 +1,3 @@
-*/
 body {
  /*overflow-x: hidden;*/
  font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
@@ -96,6 +95,16 @@ section {
    #messages li { padding: 5px 10px; }
    #messages li:nth-child(odd) { background: #eee; }
 
+#searchpic {
+  height: 100px;
+  width:100px;
+}
+
+#chatbutton {
+  
+}
+
+
 
 
 @media (min-width: 768px) {
@@ -110,11 +119,6 @@ section {
  background: #fed136;
  text-shadow: none; }
 
-img::selection {
- background: transparent; }
-
-img::-moz-selection {
- background: transparent; }
 
 body {
  -webkit-tap-highlight-color: #fed136; }
