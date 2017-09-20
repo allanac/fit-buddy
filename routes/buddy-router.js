@@ -6,10 +6,10 @@ const router = express.Router();
 router.get ('/findbuddy',(req, res, next) => {
   UserModel
     .find({
-      location: req.user.userLocation,
-      fitness_level: req.user.userFitLevel,
-      fitness_goals: req.user.userFitGoals,
-      gym_membership: req.user.userGym
+      userLocation: req.user.userLocation,
+      userFitLevel: req.user.userFitLevel,
+      userFitGoals: req.user.userFitGoals,
+      userGym: req.user.userGym
     })
     // .sort({})
 
