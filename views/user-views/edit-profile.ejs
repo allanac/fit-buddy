@@ -1,95 +1,193 @@
+<form id="form" method="post" action="/profile/<%= userInfo._id %>" class="form-horizontal">
 <h2> Update Profile </h2>
+  <div class="form-group">
+    <label class="control-label col-xs-4"><span>Name</span></label>
+    <div class="col-xs-3">
+    <input class="form-control" type="text" name="firstName">
+  </div>
+</div>
+<br>
+  <div class="form-group">
+    <label class="control-label col-xs-4"><span>Gender</span></label>
+    <div class="col-xs-8">
+    <select class="selectpicker" name="gender">
+        <option value="male"> Male </option>
+        <option value="female"> Female </option>
+    </select>
+    </div>
+  </div>
+<br>
+  <div class="form-group">
+    <label class="control-label col-xs-4" for="location-input"> Location</label>
+    <div class="col-xs-8">
+    <select class="selectpicker" id="location-input" name="userLocation">
+        <option> Miami </option>
+        <option> North Miami </option>
+        <option> South Miami </option>
+        <option> Kendall </option>
+        <option> Doral </option>
+    </select>
+  </div>
+  </div>
+<br>
 
-<form id="form" method="post" action="/profile/<%= userInfo._id %>">
+  <div class="form-group">
+    <label class="control-label col-xs-4" for="gym-input">Do you Belong to a Gym? (select all that Apply)</label>
+    <div class="col-xs-8">
+      <select multiple class="selectpicker" id="gym-input"  name="userGym[]">
+        <option> L.A. Fitness </option>
+        <option> Orange Theory </option>
+        <option> UFC Gym </option>
+        <option> You Fit </option>
+        <option> Planet Fitness </option>
+        <option> Equinox </option>
+      </select>
+    </div>
+    </div>
 
-  <label for="name-input"> First Name </label>
-  <input id="name-input" type="text" name="firstName">
+<br>
+    <div class="form-group">
+      <label class="control-label col-xs-4" for="workout-location"> Favorite Places to Workout?</label>
+      <div class="col-xs-8">
+      <select class="selectpicker" multiple data-max-options="4" name="workoutLocations[]" id="workout-location">
+        <option>Gym</option>
+        <option>Track/Field</option>
+        <option>Beach</option>
+        <option>Distance Road Running</option>
+        <option>Pool</option>
+        <option> Bicycles </option>
+        <option> Dance Classes </option>
+      </select>
+    </div>
+    </div>
+<br>
+    <div class="form-group">
+      <label class="control-label col-xs-4" for="workout-type"> What type of workouts do you prefer? (select all that apply)</label>
+      <div class="col-xs-8">
+      <select class="selectpicker" multiple data-max-options="3" name="workoutTypes[]" id="workout-type">
+        <option>Light Weights</option>
+        <option>Heavy Weights</option>
+        <option>Body Weight </option>
+        <option>Cardio</option>
+        <option>Sprint</option>
+        <option>Dance</option>
+        <option>Plyometrics </option>
+        <option>Sports</option>
+      </select>
+    </div>
+    </div>
+<br>
+    <div class="form-group">
+      <label class="control-label col-xs-4" for="fitness-input">Fitness Level</label>
+      <div class="col-xs-8">
+      <select class="selectpicker" id="fitness-input" name="userFitLevel">
+        <option> I've never worked out before </option>
+        <option> Beginner </option>
+        <option> Intermediate </option>
+        <option> Advanced </option>
+        <option> Professional </option>
+      </select>
+    </div>
+    </div>
+<br>
 
-  <label for="phone-input"> Phone number </label>
-  <input id="phone-input" type="text" name="updatePhone">
+    <div class="form-group">
+      <label class="control-label col-xs-4">What is your main Fitness Goal for the next 3 months?</label>
+      <div class="col-xs-8">
+      <select class="selectpicker" id="fitgoals-input" name="userFitGoals">
+        <option> Lose Weight </option>
+        <option> Build Muscle </option>
+        <option> Overall Stay in Shape/Be Fit </option>
+        <option> Build Upper Body Strength </option>
+        <option> Build Lower Body Strength </option>
+      </select>
+    </div>
+    </div>
+<br>
+    <div class="form-group">
+      <label class="control-label col-xs-4" for="available-days"> What days do you workout?</label>
+      <div class="col-xs-8">
+      <select class="selectpicker" multiple id="available-days"
+              name="availableDays[]" data-style="btn-primary" data-width="auto">
+        <option> Monday </option>
+        <option> Tuesday </option>
+        <option> Wednesday </option>
+        <option> Thursday </option>
+        <option> Friday </option>
+        <option> Saturday </option>
+        <option> Sunday</option>
+      </select>
+      </div>
+    </div>
+<br>
+    <div class="form-group">
+      <label class="control-label col-xs-4" for="availableTimes"> What times do you workout? Morning (5am-11am), Afternoon (12pm-5pm), Evening(6pm - 11pm), LateNight (12am-5am)</label>
+      <div class="col-xs-8">
+      <select multiple name="availableTimes[]" class="selectpicker" data-style="btn-primary">
+        <optgroup label class="Monday">
+          <option value="Monday Morning">Morning</option>
+          <option value="Monday Afternoon">Afternoon</option>
+          <option value="Monday Evening">Evening</option>
+          <option value="Monday Late Night">Late Night</option>
+        </optgroup>
+        <optgroup label class="Tuesday">
+          <option value="Tuesday Morning">Morning</option>
+          <option value="Tuesday Afternoon">Afternoon</option>
+          <option value="Tuesday Evening">Evening</option>
+          <option value="Tuesday Late Night">Late Night</option>
+        </optgroup>
+        <optgroup label class="Wednesday">
+          <option value="Wednesday Morning">Morning</option>
+          <option value="Wednesday Afternoon">Afternoon</option>
+          <option value="Wednesday Evening">Evening</option>
+          <option value="Wednesday Late Night">Late Night</option>
+        </optgroup>
+        <optgroup label = "Thursday">
+          <option value="Thursday Morning">Morning</option>
+          <option value="Thursday Afternoon">Afternoon</option>
+          <option value="Thursday Evening">Evening</option>
+          <option value="Thursday Late Night">Late Night</option>
+        </optgroup>
+        <optgroup label class="Friday">
+          <option value="Friday Morning">Morning</option>
+          <option value="Friday Afternoon">Afternoon</option>
+          <option value="Friday Evening">Evening</option>
+          <option value="Friday Late Night">Late Night</option>
+        </optgroup>
+        <optgroup label="Saturday">
+          <option value="Saturday Morning">Morning</option>
+          <option value="Saturday Afternoon">Afternoon</option>
+          <option value="Saturday Evening">Evening</option>
+          <option value="Saturday Late Night">Late Night</option>
+        </optgroup>
+        <optgroup label="Sunday">
+          <option value="Sunday Morning">Morning</option>
+          <option value="Sunday Afternoon">Afternoon</option>
+          <option value="Sunday Evening">Evening</option>
+          <option value="Sunday Late Night">Late Night</option>
+        </optgroup>
+      </select>
+    </div>
+    </div>
+<br>
+    <div class="form-group">
+      <label class="control-label col-xs-4" for="buddy-pick">
+        <span>Which workout buddy would you prefer?</span></label>
+        <div class="col-xs-8">
+        <select class="selectpicker" name="userBuddyPref" id="buddy-pick">
+          <option value="male"> Male </option>
+          <option value="female"> Female </option>
+        </select>
+        </div>
+    </div>
 
-  <label for="gender-select">Gender</label>
-  <select id="gender-select" name="gender">
-      <option value="male"> Male </option>
-      <option value="female"> Female </option>
-  </select>
+<br>
 
-  <label for="location-input"> Location </label>
-  <select id="location-input" name="updateLocation">
-      <option value="miami"> Miami </option>
-      <option value="north miami"> North Miami </option>
-      <option value="south miami"> South Miami </option>
-      <option value="kendall"> Kendall </option>
-      <option value="doral"> Doral </option>
-  </select>
-
-  <label for="gym-input">Do you Belong to a Gym? </label>
-  <select id="gym-input" name="updateGym">
-      <option value="lafitness"> L.A. Fitness </option>
-      <option value="orange"> Orange Theory </option>
-      <option value="ufc"> UFC Gym </option>
-      <option value="youfit"> You Fit </option>
-      <option value="planetfit"> Planet Fitness </option>
-      <option value="equinox"> Equinox </option>
-  </select>
-
-  <label for="workout-location"> Where do You like to workout? (select all that apply)</label>
-  <select multiple name="updateLocation">
-    <option value="gym">Gym</option>
-    <option value="field">Track/Field</option>
-    <option value="beach">Beach</option>
-    <option value="road">Distance Road Running</option>
-    <option value="pool">Pool</option>
-    <option value="cycling"> Bicycles </option>
-    <option value="classes"> Dance Classes </option>
-  </select>
+    <div class="form-group">
+      <div class="col-xs-offset-2 col-xs-6">
+        <button type="submit" class="btn btn-primary">Save Profile</button>
+    </div>
+    </div>
 
 
-  <label for="buddypref-input"> Would You Prefer a Male or Female Workout Buddy? </label>
-  <select id="buddypref-input" name="updateBuddyPref">
-      <option value="male"> Male </option>
-      <option value="female"> Female </option>
-  </select>
-
-  <label for="fitness-input"></label>
-  <select id="fitness-input" name="updateFitnessLevel">
-      <option value="none"> I've never worked out before </option>
-      <option value="beginner"> Beginner </option>
-      <option value="intermediate"> Intermediate </option>
-      <option value="advanced"> Advanced </option>
-      <option value="professional"> Professional </option>
-  </select>
-
-  <label for="fitgoals-input">Fitness Goals</label>
-  <select id="fitgoals-input" name="updateFitnessGoals">
-      <option value="none"> I've never worked out before </option>
-      <option value="beginner"> Beginner </option>
-      <option value="intermediate"> Intermediate </option>
-      <option value="advanced"> Advanced </option>
-      <option value="professional"> Professional </option>
-  </select>
-
-  <label for="available-days"> What days are you available to workout (select all that apply)</label>
-  <select multiple id="available-days" name="availableDays">
-    <option value="mon"> Monday </option>
-    <option value="tues"> Tuesday </option>
-    <option value="wed"> Wednesday </option>
-    <option value="thurs"> Thursday </option>
-    <option value="fri"> Friday </option>
-    <option value="sat"> Saturday </option>
-    <option value="sun"> Sunday</option>
-  </select>
-
-  <label for=""> </label>userFromDb.availability_time:
-  <select multiple name="availableTimes">
-    <option value="mon"> Monday </option>
-    <option value="tues"> Tuesday </option>
-    <option value="wed"> Wednesday </option>
-    <option value="thurs"> Thursday </option>
-    <option value="fri"> Friday </option>
-    <option value="sat"> Saturday </option>
-    <option value="sun"> Sunday</option>
-  </select>
-
-  <button> Update Profile </button>
 </form>

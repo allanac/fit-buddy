@@ -1,6 +1,9 @@
+<section>
 <h2>Log In</h2>
 
 <form id="form" method="post" action="/process-login">
+<div class="form-group">
+
 
   <% if(securityFeedback.length > 0) { %>
       <p class="success-message"> <%=securityFeedback %> </p>
@@ -11,10 +14,13 @@
   <% } %>
 
   <label for="email-input"> Email </label>
-  <input id="email-input" type="email" name="loginEmail">
+  <input id="email-input" type="email" name="loginEmail" placeholder="Email" class="form-control">
   <br>
 
   <label for="password-input"> Password </label>
-  <input id="password-input" type="password" name="loginPassword">
+  <input id="password-input" type="password" name="loginPassword" placeholder="Password" class="form-control">
   <button> Log In </button>
+
+  </div>
 </form>
+</section>

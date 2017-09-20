@@ -2,31 +2,90 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <!--  If your Website is responsive, add this It Disables weird mobile browser features that are for non-responsive Websites  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <!-- BootStrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="./stylesheets/style.css">
   </head>
 
-  <body>
+    <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-default" id="mainNav">
+          <div class="container navbar-header">
+            <a class="navbar-brand" href="/">Fit Buddy</a>
+            <button class="navbar-toggler navbar-toggler-right navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fa fa-bars"></i>
+            </button>
 
-    <header>
-      <nav>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto nav navbar-right">
+                <li class="nav-item">
+                  <a class="nav-link " href="/signup">SignUp</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="/login">LogIn</a>
+                </li>
+                <% if(currentUser){ %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/profile/<%=currentUser._id%>/edit">Update Profile</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="/findbuddy">Find a Buddy</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="/messages">My Messages</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="/logout">Logout</a>
+                </li>
+                <% } %>
+              </ul>
+                <!-- <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#">Link</a></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item">
+                        <a class="nav-link " href="/signup">SignUp</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link " href="/login">LogIn</a>
+                      </li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </li>
+                </ul> -->
 
-        <a href="/signup"> Sign Up</a>
-        <br>
-        <a href="/login">Log In</a>
-        <br>
-        <a href="/search"> Find a Buddy</a>
-        <br>
-        <% if(currentUser){ %>
-        <a href="/profile/<%=currentUser._id%>/edit"> Update Profile </a>
-        <br>
-        <% } %> 
-        <a href="/logout">Log Out</a>
-        <br>
 
-      </nav>
-    </header>
+            </div>
+          </div>
+        </nav>
+
 
     <%- body %>
-  </body>
+
+
+      <!-- jQuery's JavaScript (put it before BootStrap) -->
+      <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+      <!-- BootStrap Javascript Before yours -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <!-- MY Javascript After jQuery & Bootstrap -->
+      <script src="./public/javascripts/style.js"></script>
+
+</body>
 </html>

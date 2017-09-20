@@ -127,14 +127,13 @@ router.post('/profile/:userId', (req,res,next) => {
           }
 
           userFromDb.name = req.body.firstName;
-          userFromDb.phone = req.body.updatePhone;
           userFromDb.gender = req.body.gender;
-          userFromDb.location = req.body.updateLocation;
-          userFromDb.gym_membership = req.body.updateGym;
-          userFromDb.pref_workout_loc = req.body.updateLocation;
-          userFromDb.pref_workout_buddy = req.body.updateBuddyPref;
-          userFromDb.fitness_level = req.body.updateFitnessLevel;
-          userFromDb.fitness_goals = req.body.updateFitnessGoals;
+          userFromDb.location = req.body.userLocation;
+          userFromDb.gym_membership = req.body.userGym;
+          userFromDb.pref_workout_loc = req.body.workoutLocations;
+          userFromDb.pref_workout_buddy = req.body.userBuddyPref;
+          userFromDb.fitness_level = req.body.userFitLevel;
+          userFromDb.fitness_goals = req.body.userFitGoals;
           userFromDb.availability_days = req.body.availableDays;
           userFromDb.availability_time = req.body.availableTimes;
 

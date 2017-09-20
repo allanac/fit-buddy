@@ -21,11 +21,11 @@ const userSchema = new Schema (
     body_type:{type:String},
 
     availability_days: {type:Array},
-    availability_time: {type:String},
+    availability_time: {type:Array}
 
+  },
     {timestamps:true}
 
-  }
 );
 
 const UserModel = mongoose.model('User', userSchema);

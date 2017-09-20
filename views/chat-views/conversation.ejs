@@ -1,0 +1,10 @@
+<h2> Messages with Buddy</h2>
+
+<%= MessagesList.length %>
+
+<form action="/messages/<%= recipient %>/chat" method="post">
+  <label for="composedMessage"></label>
+  <textarea name="composedMessage" rows="2" cols="40" placeholder="Hey what time do you want to workout?"></textarea>
+<br>
+<button> Send </button>
+</form>

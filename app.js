@@ -30,7 +30,7 @@ app.locals.title = 'Express - (FIT BUDDY APP TEST)';
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
@@ -54,9 +54,11 @@ app.use((req,res,next) => {
     else {
       res.locals.currentUser = null;
     }
-    
+
     next ();
 });
+
+
 
 // ------------- ROUTES ---------------//
 const index = require('./routes/index');
@@ -65,7 +67,16 @@ app.use('/', index);
 const myUserRoutes = require('./routes/user-router');
 app.use(myUserRoutes);
 
+const myBuddyRoutes = require('./routes/buddy-router');
+app.use(myBuddyRoutes);
+
+const myConversationRoutes = require('./routes/conversation-router');
+app.use(myConversationRoutes);
+
+
 // ------------- ROUTES ---------------//
+
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
