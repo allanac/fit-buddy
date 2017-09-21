@@ -6,10 +6,15 @@ const MessageModel = require('../models/message-model.js');
 const router = express.Router();
 
 router.get('/messages', (req, res, next) => {
+  console.log('Check');
   // This route will display all conversations the signed in user has with other users
   // Only return one message from each conversation to display as snippet
   ConversationModel.find({ participants: req.user._id })
-    .select('_id')
+    .select('_id participants')
+    .populate({
+      path: "participants",
+      select: "name"
+    })
     .exec(function(err, conversations) {
         if (err) {
           next(err);
@@ -19,24 +24,30 @@ router.get('/messages', (req, res, next) => {
       // Set up empty array to hold conversations + most recent message
     let fullConversations = [];
     conversations.forEach((conversation) => {
-      MessageModel.find({ 'conversationId': conversation._id })
+      console.log('convo--------')
+      console.log(conversation);
+      if (req.user._id.toString() === conversation.participants[0]._id.toString()) {
+        var recipient = conversation.participants[1];
+      }
+      else{
+        var recipient = conversation.participants[0];
+      }
+      console.log(recipient);
+      MessageModel.findOne({ 'conversationId': conversation._id })
           .sort('-createdAt')
-          .limit(1)
-          .populate({
-            path: "author",
-            select: "user.name"
-          })
           .exec((err, message) => {
             if (err) {
               next(err);
               return;
             }
-
+            if (message){
+              message.recipient = recipient;
+            }
             fullConversations.push(message);
-
             if(fullConversations.length === conversations.length)
               {
-              return res.status(200).json({ conversations: fullConversations });
+              res.locals.conversationList = fullConversations;
+              res.render('chat-views/messages.ejs')
               }
           });
       });
@@ -94,31 +105,59 @@ router.get('/messages/:recipient', (req, res, next) => {
 });
 
 
-router.post('/messages/:recipient/new', (req, res, next) => {
+router.post('/messages/:recipient/chat', (req, res, next) => {
+  ConversationModel.findOne(
+    {participants:
+        { $size: 2, $all:[req.user._id, req.params.recipient] }
+      },
 
+      (err, conversation) => {
+        if (err) {
+          next(err);
+          return;
+        }
+
+        if(conversation){
+          sendMessage(req, res, next, conversation);
+        }
+        else {
+          const newConversation = new ConversationModel (
+            {
+              participants: [
+                req.user._id,
+                req.params.recipient]
+            }
+          );
+
+          newConversation.save((err) =>  {
+            if (err) {
+              return next(err);
+            }
+
+            sendMessage(req, res, next, newConversation);
+          })
+        } // close else {
+      } // close (err, conversation) => {
+    ); // close   ConversationModel.findOne(
+});
+
+
+function sendMessage (req, res, next, conversation) {
   const message = new MessageModel({
     conversationId: conversation._id,
     body: req.body.composedMessage,
     author: req.user._id
   });
 
-const reply = new MessageModel({
-    conversationId: req.params.conversationId,
-    body: req.body.composedMessage,
-    author: req.user._id
-  });
-
-  reply.save((err, sentReply) => {
+  message.save((err, sentReply) => {
     if (err) {
       next(err);
       return;
     }
-    res.locals.conversation = sentReply;
-    res.render('chat-views/conversation');
-    return(next);
-  });
-});
 
+    res.redirect('/messages/' + req.params.recipient);
+  });
+}
 
 
 
@@ -138,30 +177,7 @@ const reply = new MessageModel({
 //   });
 // }
 // //
-// // // PUT Route to Update Message
-// // updateMessage = function(req, res, next) {
-// //   Conversation.find({
-// //     $and : [
-// //             { '_id': req.params.messageId }, { 'author': req.user._id }
-// //           ]}, function(err, message) {
-// //         if (err) {
-// //           res.send({ error: err});
-// //           return next(err);
-// //         }
-// //
-// //         message.body = req.body.composedMessage;
-// //
-// //         message.save(function (err, updatedMessage) {
-// //           if (err) {
-// //             res.send({ error: err });
-// //             return next(err);
-// //           }
-// //
-// //           res.status(200).json({ message: 'Message updated!' });
-// //           return next();
-// //         });
-// //   });
-// // }
+
 
 
 

@@ -10,24 +10,25 @@
 
     <h4>Welcome <%=currentUser.name %> !</h4>
     <br>
-    <p><h6>Workout Days:</h6> <%=currentUser.availableDays%> </p>
-    <p>I am Located in: <%=currentUser.userLocation %> </p>
-    <p>My Gym Memberships: <%=currentUser.userGym %> </p>
-    <p> I like working out here: <%=currentUser.workoutLocations %></p>
-    <p> My Fitness Goals: <%=currentUser.userFitGoals %> </p>
-    <p>My Current Fitness Level: <%= currentUser.userFitLevel %> </p>
+    <h6>Workout Days:</h6><p> <%=currentUser.availableDays%> </p>
+    <h6>I am Located in:</h6><p> <%=currentUser.userLocation %> </p>
+    <h6>My Gym Memberships:</h6><p> <%=currentUser.userGym %> </p>
+    <h6>I like working out here:</h6><p> <%=currentUser.workoutLocations %></p>
+    <h6> My Fitness Goals:</h6><p> <%=currentUser.userFitGoals %> </p>
+    <h6>My Current Fitness Level:</h6><p> <%= currentUser.userFitLevel %> </p>
 </ul>
 </div>
 
 
 
-
     <div class="col-md-2 col-md-offset-1">
+      <br>
+      <br>
+      <a class="btn btn-default" href="/profile/<%=currentUser._id%>/edit" role="button">Update Profile</a>
       <a class="btn btn-default" href="/messages" role="button">My Messages</a>
+      <!-- <a class="btn btn-default" href="/addgym" role="button"> Add a Gym</a> -->
       <br>
       <br>
-      <a class="btn btn-default" href="/findbuddy" role="button">Find Fit Buddy</a>
-      <a class="btn btn-default" href="/addgym" role="button"> Add a Gym</a>
     </div>
 </div>
 </div>

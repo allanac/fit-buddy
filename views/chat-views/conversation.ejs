@@ -1,29 +1,38 @@
-<h2> Messages with Buddy</h2>
-
-<%= MessagesList.length %>
+<section>
+<h2 style="center"> Chat with Buddy</h2>
 
 
 <div class="listof-messages">
-  <div class="col-sm-6">
+<% MessagesList.forEach((oneMessage) => { %>
+  <div class="col-sm-6 col-md-12">
   <div id="tb-testimonial" class="testimonial testimonial-primary-filled">
       <div class="testimonial-section">
-          Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.
+         <%= oneMessage.body %>
+
       </div>
-      <div class="testimonial-desc">
-          <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
-          <div class="testimonial-writer">
-            <div class="testimonial-writer-name">????</div>
-            <div class="testimonial-writer-designation">????</div>
-            <a href="#" class="testimonial-writer-company">????</a>
-          </div>
-      </div>
-  </div>
+       <div class="testimonial-desc">
+          <!-- <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt=""> -->
+            <div class="testimonial-writer">
+            <div class="testimonial-writer-name"><%= oneMessage.author.name %> Says </div>
+           </div>
+        </div>
 </div>
+</div>
+<% }) %>
 </div>
 
-<form action="/messages/<%= recipient %>/chat" method="post">
+
+<div id="chat-message-send center-block">
+  <div class="col-sm-6 col-md-12">
+<form action="/messages/<%= recipient %>/chat" method="post" class="form-group">
   <label for="composedMessage"></label>
-  <textarea name="composedMessage" rows="2" cols="40" placeholder="Hey what time do you want to workout?"></textarea>
-<br>
-<button> Send </button>
+  <textarea name="composedMessage" rows="2" cols="40"
+            placeholder="Hey what time do you want to workout?" class="form-control">
+
+  </textarea>
+ <br>
+<button type="submit" class="btn btn-primary"> Send </button>
 </form>
+</div>
+</div>
+</section>

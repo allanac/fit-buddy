@@ -16,7 +16,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 
 
   </head>
@@ -24,24 +24,22 @@
     <!-- Navigation -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-default" id="mainNav">
-          <div class="container navbar-header">
+          <div class=" navbar-header">
             <a class="navbar-brand" href="/">Fit Buddy</a>
-            <button class="navbar-toggler navbar-toggler-right navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler navbar-toggler-right navbar-toggle collapsed" type="button"
+                    data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                    aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fa fa-bars"></i>
             </button>
+          </div>
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ml-auto nav navbar-right">
-                <li class="nav-item">
-                  <a class="nav-link" href="/signup">SignUp</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/login">LogIn</a>
-                </li>
+
                 <% if(currentUser){ %>
                   <li class="nav-item">
-                    <a class="nav-link" href="/profile/<%=currentUser._id%>/edit">Update Profile</a>
+                    <a class="nav-link" href="/">My Profile</a>
                   </li>
                 <li class="nav-item">
                   <a class="nav-link " href="/findbuddy">Find a Buddy</a>
@@ -52,6 +50,13 @@
                 <li class="nav-item">
                   <a class="nav-link " href="/logout">Logout</a>
                 </li>
+                <% } else {  %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/signup">SignUp</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/login">LogIn</a>
+                  </li>
                 <% } %>
               </ul>
                 <!-- <ul class="nav navbar-nav navbar-right">
@@ -72,7 +77,6 @@
                 </ul> -->
 
 
-            </div>
           </div>
         </nav>
         </header>
@@ -89,12 +93,12 @@
 
       <!-- jQuery's JavaScript (put it before BootStrap) -->
       <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
       <!-- BootStrap Javascript Before yours -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
       <!-- MY Javascript After jQuery & Bootstrap -->
-      <script src="./javascripts/style.js"></script>
+      <script src="/javascripts/style.js"></script>
 
 
 </body>

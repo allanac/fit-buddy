@@ -151,11 +151,6 @@ router.post('/profile/:userId', (req,res,next) => {
   );
 });
 
-router.get('/messages', (req, res, next) => {
-
-  res.render('chat-views/messages.ejs');
-});
-
 
 
 

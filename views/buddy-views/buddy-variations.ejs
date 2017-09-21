@@ -1,43 +1,38 @@
 <h2> MY FitBuddy Matches</h2>
 
 <br><br>
-<%  listOfUsers.forEach((oneUser) => { %>
+<%  listOfUsers.forEach((oneUser, index) => { %>
 <div class="container-fluid well span4">
-	<div class="row-fluid">
-        <div class="span2" >
+	<div class="row-fluid" id="buddy-list">
+        <div class="span1" >
 		    <img id="searchpic" src="https://media.giphy.com/media/Ft62PpMu4mzpm/giphy.gif" class="img-circle">
         </div>
 
-        <div class="span8 text-center">
+        <div class="span8 text-center" >
           <ul>
-            <li>
-            <h3> <%= oneUser.name %> </h3>
+            <h3 style="margin-top:-90px;"> <%= oneUser.name %> </h3>
             <h6>My Current Fit Goals : <%= oneUser.userFitGoals %></h6>
             <h6>My Fitness Level: <%= oneUser.userFitLevel %></h6>
             <h6><p> I workout: <%= oneUser.availableDays %></p>
             <p> At these times: <%= oneUser.availableTimes %> </p></h6>
             <h6><p> Member Since: <time> <%= oneUser.createdAt %>  </time></p>
-            </li>
           </ul>
         </div>
 
 
         <div class="span2">
             <div class="btn-group pull-right">
-                <a id="chatbutton" class="btn dropdown-toggle btn-info" href="/messages/<%=oneUser._id %>">
-                    Chat
-                </a>
+							<!-- Button trigger modal -->
+							<a class="btn btn-primary" data-toggle="modal" data-target=".myModal-<%=index%>" href="#0">
+								Message This User
+							</a>
             </div>
         </div>
 </div>
 </div>
-<!-- Button trigger modal -->
-<a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="/messages/<%=oneUser._id %>">
-  Message This User
-</a>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade myModal-<%=index%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -46,19 +41,18 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-				<form action="/messages/<%= oneUser._id %>/chat" method="post">
-				  <label for="composedMessage"></label>
-				  <textarea name="composedMessage" rows="2" cols="40" placeholder="Hey what time do you want to workout?"></textarea>
-				<br>
-				<button> Send </button>
-				</form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+			<form action="/messages/<%= oneUser._id %>/chat" method="post" class="form-basic">
+	      <div class="modal-body">
+					  <label for="composedMessage"></label>
+					  <textarea name="composedMessage" rows="2" cols="40" placeholder="Hey what time do you want to workout?"></textarea>
+					<br>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-primary">Send</button>
+	      </div>
+			</form>
     </div>
   </div>
 </div>
-  <%  }) %>
+<%  }) %>
