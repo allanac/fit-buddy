@@ -31,4 +31,34 @@
         </div>
 </div>
 </div>
+<!-- Button trigger modal -->
+<a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="/messages/<%=oneUser._id %>">
+  Message This User
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Message <%=oneUser.name%> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+				<form action="/messages/<%= oneUser._id %>/chat" method="post">
+				  <label for="composedMessage"></label>
+				  <textarea name="composedMessage" rows="2" cols="40" placeholder="Hey what time do you want to workout?"></textarea>
+				<br>
+				<button> Send </button>
+				</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
   <%  }) %>

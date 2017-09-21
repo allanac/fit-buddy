@@ -11,35 +11,37 @@ router.get('/messages', (req, res, next) => {
   ConversationModel.find({ participants: req.user._id })
     .select('_id')
     .exec(function(err, conversations) {
-      if (err) {
-        res.send({ error: err });
-        return next(err);
-      }
+        if (err) {
+          next(err);
+          return;
+          }
 
       // Set up empty array to hold conversations + most recent message
-      let fullConversations = [];
-      conversations.forEach((conversation) => {
-        MessageModel.find({ 'conversationId': conversation._id })
+    let fullConversations = [];
+    conversations.forEach((conversation) => {
+      MessageModel.find({ 'conversationId': conversation._id })
           .sort('-createdAt')
           .limit(1)
           .populate({
             path: "author",
-            select: "profile.firstName profile.lastName"
+            select: "user.name"
           })
-          .exec(function(err, message) {
+          .exec((err, message) => {
             if (err) {
-              res.send({ error: err });
-              return next(err);
+              next(err);
+              return;
             }
+
             fullConversations.push(message);
-            if(fullConversations.length === conversations.length) {
+
+            if(fullConversations.length === conversations.length)
+              {
               return res.status(200).json({ conversations: fullConversations });
-            }
+              }
           });
       });
   });
 });
-
 
 
 
@@ -54,7 +56,9 @@ router.get('/messages/:recipient', (req, res, next) => {
         if(conversation === null){
           const newConversation = new ConversationModel (
             {
-              participants: [req.user._id, req.params.recipient]
+              participants: [
+                req.user._id,
+                req.params.recipient]
             }
           );
 
@@ -90,18 +94,15 @@ router.get('/messages/:recipient', (req, res, next) => {
 });
 
 
-// router.post('/messages/:recipient/new', (req, res, next) => {
-//   // This route will create and save the new messages in the conversation
+router.post('/messages/:recipient/new', (req, res, next) => {
 
-router.post('/messages/:recipient/chat', (req, res, next) => {
+  const message = new MessageModel({
+    conversationId: conversation._id,
+    body: req.body.composedMessage,
+    author: req.user._id
+  });
 
-    if(!req.body.composedMessage) {
-      res.status(422).send({ error: 'Please enter a message.' });
-      return next();
-    }
-
-
-  const reply = new MessageModel({
+const reply = new MessageModel({
     conversationId: req.params.conversationId,
     body: req.body.composedMessage,
     author: req.user._id
@@ -114,43 +115,31 @@ router.post('/messages/:recipient/chat', (req, res, next) => {
     }
     res.locals.conversation = sentReply;
     res.render('chat-views/conversation');
-    // res.status(200).json({ message: 'Reply successfully sent!' });
     return(next);
   });
-
 });
 
 
 
-// const message = new MessageModel({
-//   conversationId: conversation._id,
-//   body: req.body.composedMessage,
-//   author: req.user._id
-// });
-//
-//
-// res.status(200).json({ message: 'Conversation started!', conversationId: conversation._id });
-// return next();
 
+// // DELETE Route to Delete Conversation
+// router.get(deleteConversation = function(req, res, next) {
+//   Conversation.findOneAndRemove({
+//     $and : [
+//             { '_id': req.params.conversationId }, { 'participants': req.user._id }
+//            ]}, function(err) {
+//         if (err) {
+//           res.send({ error: err });
+//           return next(err);
+//         }
 //
-// // // DELETE Route to Delete Conversation
-// // exports.deleteConversation = function(req, res, next) {
-// //   Conversation.findOneAndRemove({
-// //     $and : [
-// //             { '_id': req.params.conversationId }, { 'participants': req.user._id }
-// //            ]}, function(err) {
-// //         if (err) {
-// //           res.send({ error: err });
-// //           return next(err);
-// //         }
-// //
-// //         res.status(200).json({ message: 'Conversation removed!' });
-// //         return next();
-// //   });
-// // }
+//         res.status(200).json({ message: 'Conversation removed!' });
+//         return next();
+//   });
+// }
 // //
 // // // PUT Route to Update Message
-// // exports.updateMessage = function(req, res, next) {
+// // updateMessage = function(req, res, next) {
 // //   Conversation.find({
 // //     $and : [
 // //             { '_id': req.params.messageId }, { 'author': req.user._id }

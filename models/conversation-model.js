@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 // Schema defines how chat messages will be stored in MongoDB
 const conversationSchema = new Schema(
   {
-    participants: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+    participants: [
+      { type: Schema.Types.ObjectId,
+        ref: 'User'}
+    ],
   }
 );
 
