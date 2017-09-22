@@ -8,8 +8,8 @@ router.get ('/findbuddy',(req, res, next) => {
     .find({
       userLocation: req.user.userLocation,
       userFitLevel: req.user.userFitLevel,
-      // userFitGoals: req.user.userFitGoals,
-      // userGym: req.user.userGym
+      userFitGoals: req.user.userFitGoals,
+      userGym: req.user.userGym
     })
     // .sort({})
 
